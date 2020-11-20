@@ -11,7 +11,9 @@ excludeSwitches: ['enable-logging']
 options = webdriver.ChromeOptions()
 options.add_experimental_option("excludeSwitches", ["enable-logging"])
 
-driver = webdriver.Chrome(options=options, executable_path=r'C:\ProgramData\Anaconda3\envs\hltv\chromedriver.exe')
+PATH = ''
+
+driver = webdriver.Chrome(options=options, executable_path=rf'{PATH}')
 
 query_user = input('Digite sua busca / Type your google query: ')
 query = query_user.replace(" ", "+")
@@ -80,7 +82,7 @@ while True:
         df = get_info(driver_get)
         print(df)
 
-        if 'spa_sp.csv' in os.listdir():
+        if f'{query_user}.csv' in os.listdir():
             df.to_csv(f'{query_user}.csv', mode='a', header=False, index=False, sep=";")
         else:
             df.to_csv(f'{query_user}.csv', mode='a', header=True, index=False, sep=";")
